@@ -1,6 +1,8 @@
 </div>
+
 <footer>
-    &copy; 2026 Blogging Platform CMS. All rights reserved.
+    © 2026 Blogging Platform CMS | Academic Project
 </footer>
+
 </body>
 </html>
