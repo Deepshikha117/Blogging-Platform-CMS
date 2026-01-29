@@ -1,7 +1,7 @@
 <?php
 require_once '../includes/auth.php';
 require_once '../config/db.php';
-
+require_once '../includes/header.php';
 
 // Fetch all posts with category & author
 $sql = "
@@ -23,14 +23,14 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <title>Manage Posts</title>
     <style>
-        body { font-family: Arial; background: #f4f4f4; }
-        .container { width: 90%; margin: 40px auto; background: #fff; padding: 20px; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: left; }
-        th { background: #333; color: #fff; }
-        a { text-decoration: none; padding: 6px 10px; }
-        .edit { background: #4CAF50; color: white; }
-        .delete { background: #f44336; color: white; }
+        body { font-family: Oswald; background: #ffffff; }
+        .container { width: 90%; margin: 40px auto; background: #CBDCB8; padding: 20px; border-radius: 30px;}
+        table { width: 100%; border-collapse: collapse; color:black; }
+        th, td { padding: 10px; border-bottom: 1px solid #ffffff; text-align: left; }
+        th { background: #485935; color: #F4F3F1 }
+        a { text-decoration: none; padding: 6px 10px; border-radius: 10px;}
+        .edit { background: #E9B957; color: #F4F3F1; }
+        .delete { background: RED; color: #F4F3F1; }
     </style>
 </head>
 <body>
@@ -68,3 +68,4 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 </body>
 </html>
+<?php require_once '../includes/footer.php'; ?>

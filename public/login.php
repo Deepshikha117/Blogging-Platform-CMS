@@ -1,6 +1,5 @@
 <?php
 
-
 session_start();
 require_once '../config/db.php';
 
@@ -54,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #f4f4f4;
+            background: #F4F3F1;
         }
         .login-box {
             width: 350px;
@@ -67,15 +66,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             text-align: center;
         }
         input {
-            width: 100%;
+            width: 90%;
             padding: 10px;
             margin-top: 10px;
         }
         button {
-            width: 100%;
+            width: 97%;
             padding: 10px;
             margin-top: 15px;
-            background: #333;
+            background: #0065CB;
             color: #fff;
             border: none;
         }

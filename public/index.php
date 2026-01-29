@@ -1,6 +1,6 @@
 <?php
 require_once "../config/db.php";
-
+require_once '../includes/header.php';
 // Initial load
 $stmt = $pdo->prepare("
     SELECT posts.id, posts.title, posts.created_at, users.username AS author
@@ -16,18 +16,12 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <html>
 <head>
     <title>Blogging Platform CMS</title>
-    <style>
-        body { font-family: Arial; background: #f5f5f5; }
-        .container { width: 800px; margin: 30px auto; }
-        .post { background: #fff; padding: 15px; margin-bottom: 15px; }
-        .meta { font-size: 13px; color: #777; }
-        button { padding: 10px 15px; }
-    </style>
+   
 </head>
 <body>
 
 <div class="container">
-    <h1>📚 Blogging Platform CMS</h1>
+    <h1>Blogging Platform CMS</h1>
     <p>Public Read-Only Blog</p>
 
     <form action="search.php" method="get">
@@ -77,3 +71,4 @@ document.getElementById("loadMore").onclick = function () {
 
 </body>
 </html>
+<?php require_once '../includes/footer.php'; ?>

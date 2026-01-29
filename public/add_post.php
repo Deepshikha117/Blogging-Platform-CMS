@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once __DIR__ . '/../config/db.php';
+require_once '../config/db.php';
+require_once '../includes/header.php';
 
 /* ---------------- SECURITY CHECK ---------------- */
 if (!isset($_SESSION['user_id'])) {
@@ -83,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
+<div class="container">
 <h2>Add New Post</h2>
 
 <?php if (!empty($error)): ?>
@@ -120,6 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <br>
     <button type="submit">Publish</button>
 </form>
-
+</div>
 </body>
 </html>
+<?php require_once '../includes/footer.php'; ?>

@@ -1,6 +1,6 @@
 <?php
 require_once "../config/db.php";
-
+require_once '../includes/header.php';
 $q = $_GET['q'] ?? '';
 $results = [];
 
@@ -56,3 +56,4 @@ if ($q) {
 
 </body>
 </html>
+<?php require_once '../includes/footer.php'; ?>

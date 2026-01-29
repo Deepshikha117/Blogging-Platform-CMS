@@ -1,6 +1,6 @@
 <?php
 require_once "../config/db.php";
-
+require_once '../includes/header.php';
 $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
 $limit = 3;
 
