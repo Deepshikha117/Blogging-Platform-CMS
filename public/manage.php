@@ -22,22 +22,13 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <html>
 <head>
     <title>Manage Posts</title>
-    <style>
-        body { font-family: Oswald; background: #ffffff; }
-        .container { width: 90%; margin: 40px auto; background: #CBDCB8; padding: 20px; border-radius: 30px;}
-        table { width: 100%; border-collapse: collapse; color:black; }
-        th, td { padding: 10px; border-bottom: 1px solid #ffffff; text-align: left; }
-        th { background: #485935; color: #F4F3F1 }
-        a { text-decoration: none; padding: 6px 10px; border-radius: 10px;}
-        .edit { background: #E9B957; color: #F4F3F1; }
-        .delete { background: RED; color: #F4F3F1; }
-    </style>
+   
 </head>
 <body>
 
 <div class="container">
     <h2>Manage Posts</h2>
-
+    
     <table>
         <tr>
             <th>Title</th>

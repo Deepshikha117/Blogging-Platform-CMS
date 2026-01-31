@@ -7,11 +7,20 @@ $stmt = $pdo->prepare("
     FROM posts
     JOIN users ON posts.author_id = users.id
     ORDER BY posts.created_at DESC
-    LIMIT 3 OFFSET 0
+    LIMIT 6 OFFSET 0
 ");
 $stmt->execute();
 $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+<!-- 🔔 FLASH MESSAGE GOES HERE -->
+<?php if (!empty($_SESSION['success_message'])): ?>
+    <div class="alert success" role="alert">
+        <?php
+            echo htmlspecialchars($_SESSION['success_message']);
+            unset($_SESSION['success_message']);
+        ?>
+    </div>
+<?php endif; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,30 +40,38 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <hr>
 
-    <div id="posts">
+<div class="container">
+
+    <h2 class="page-title">Latest Posts</h2>
+
+    <div class="post-grid">
+
         <?php foreach ($posts as $post): ?>
-            <div class="post">
-                <h2>
-                    <a href="post.php?id=<?= $post['id'] ?>">
-                        <?= htmlspecialchars($post['title']) ?>
-                    </a>
-                </h2>
-                <p class="meta">
-                    By <?= htmlspecialchars($post['author']) ?> |
-                    <?= date("F d, Y", strtotime($post['created_at'])) ?>
-                </p>
-            </div>
+            <article class="post-card">
+
+                <h3 class="post-title">
+                    <?= htmlspecialchars($post['title']) ?>
+                </h3>
+
+               
+
+                <a class="read-more" href="post.php?id=<?= $post['id'] ?>">
+                    Read more →
+                </a>
+
+            </article>
         <?php endforeach; ?>
+
     </div>
 
-    <button id="loadMore">Load More</button>
 </div>
+
 
 <script>
 let offset = 3;
 
 document.getElementById("loadMore").onclick = function () {
-    fetch("load_posts.php?offset=" + offset)
+    fetch("load.php?offset=" + offset)
         .then(response => response.text())
         .then(data => {
             if (data.trim() === "") {

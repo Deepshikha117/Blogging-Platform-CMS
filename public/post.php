@@ -135,7 +135,8 @@ $tags = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
     <hr>
 
-    <h3>💬 Comments</h3>
+    <h3>Comments</h3>
+<span class="material-icons">comment</span>
 
     <form method="post">
         <input type="text" name="name" placeholder="Your name" required><br><br>
@@ -162,3 +163,4 @@ $tags = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
 </body>
 </html>
+<?php require_once '../includes/footer.php'; ?>

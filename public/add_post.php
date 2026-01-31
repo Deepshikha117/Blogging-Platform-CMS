@@ -9,6 +9,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+
 /* ---------------- CSRF TOKEN ---------------- */
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -69,10 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ]);
             }
         }
-
-        header("Location: index.php?success=post_added");
+        $_SESSION['success_message'] = "Post published successfully!";
+        header("Location: index.php");
         exit;
-    }
+
+}
 }
 ?>
 
@@ -85,44 +87,80 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <div class="container">
-<h2>Add New Post</h2>
 
-<?php if (!empty($error)): ?>
-    <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
-<?php endif; ?>
+    <!-- MAIN EDITOR -->
+    <main class="editor-main" role="main">
+        <h2>Add New Post</h2>
+        
 
-<form method="POST">
+        <?php if (!empty($error)): ?>
+            <div class="alert error" role="alert">
+                <?= htmlspecialchars($error) ?>
+            </div>
+        <?php endif; ?>
 
-    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+        <form method="POST">
 
-    <label>Title</label><br>
-    <input type="text" name="title" required><br><br>
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
 
-    <label>Content</label><br>
-    <textarea name="content" rows="6" required></textarea><br><br>
+            <label for="title">Post Title</label>
+            <input type="text" id="title" name="title"
+                   placeholder="Enter post title"
+                   aria-required="true"
+                   required>
 
-    <label>Category</label><br>
-    <select name="category_id" required>
-        <option value="">Select category</option>
-        <?php foreach ($categories as $cat): ?>
-            <option value="<?php echo $cat['id']; ?>">
-                <?php echo htmlspecialchars($cat['name']); ?>
-            </option>
-        <?php endforeach; ?>
-    </select><br><br>
+            <label for="content">Content</label>
+            <textarea id="content" name="content"
+                      placeholder="Start writing your content..."
+                      aria-required="true"
+                      rows="14"
+                      required></textarea>
 
-    <label>Tags</label><br>
-    <?php foreach ($tags as $tag): ?>
-        <label>
-            <input type="checkbox" name="tags[]" value="<?php echo $tag['id']; ?>">
-            <?php echo htmlspecialchars($tag['name']); ?>
-        </label><br>
-    <?php endforeach; ?>
+    </main>
 
-    <br>
-    <button type="submit">Publish</button>
-</form>
+    <!-- SIDEBAR -->
+    <aside class="editor-sidebar" role="complementary">
+
+        <!-- CATEGORY -->
+        <section class="editor-box">
+            <h3>Category</h3>
+
+            <select name="category_id" aria-required="true" required>
+                <option value="">Select category</option>
+                <?php foreach ($categories as $cat): ?>
+                    <option value="<?= $cat['id']; ?>">
+                        <?= htmlspecialchars($cat['name']); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </section>
+
+        <!-- TAGS -->
+        <section class="editor-box">
+            <h3>Tags</h3>
+
+            <div class="tag-list">
+                <?php foreach ($tags as $tag): ?>
+                    <label class="tag-item">
+                        <input type="checkbox" name="tags[]" value="<?= $tag['id']; ?>">
+                        <span><?= htmlspecialchars($tag['name']); ?></span>
+                    </label>
+                <?php endforeach; ?>
+            </div>
+        </section>
+
+        <!-- PUBLISH -->
+        <section class="publish-box">
+            <button type="submit" class="btn btn-success">
+                Publish Post
+            </button>
+        </section>
+
+    </aside>
+
+    </form>
 </div>
+
 </body>
 </html>
 <?php require_once '../includes/footer.php'; ?>

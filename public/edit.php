@@ -6,7 +6,7 @@ require_once '../includes/functions.php';
 require_once '../includes/header.php';
 
 if (!isset($_GET['id'])) {
-    header("Location: manage_posts.php");
+    header("Location: manage.php");
     exit;
 }
 
@@ -51,8 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Edit Post</title>
 </head>
 <body>
-
+<div class="container">
 <h2>Edit Post</h2>
+
+
 
 <?php if ($message): ?>
     <p style="color:green;"><?= htmlspecialchars($message) ?></p>
@@ -77,7 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <button type="submit">Update</button>
 </form>
-
+</div>
 </body>
 </html>
+
 <?php require_once '../includes/footer.php'; ?>

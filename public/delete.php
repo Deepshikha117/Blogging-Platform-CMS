@@ -17,4 +17,3 @@ $stmt->execute([$post_id]);
 
 header('Location: manage.php');
 exit;
-<?php require_once '../includes/footer.php'; ?>

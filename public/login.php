@@ -53,14 +53,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #F4F3F1;
+            background: white;
+
         }
         .login-box {
             width: 350px;
             margin: 100px auto;
-            padding: 20px;
             background: #fff;
+            padding: 10px;
             border: 1px solid #ddd;
+            margin-top: 15px;
         }
         h2 {
             text-align: center;
@@ -83,13 +85,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             text-align: center;
             margin-top: 10px;
         }
+        .logo {
+            width: 200px;
+            height: 250px;
+            transition: transform 0.3s ease;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo:hover {
+            transform: scale(1.08);
+        }
+        /* Header left */
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
     </style>
 </head>
 <body>
-
+<div class="header-left">
+        <img src="/Blogging-Platform-CMS/assets/images/LogoCMS1.png" alt="Blog CMS Logo" class="logo">
+    </div>
 <div class="login-box">
     <h2>Admin Login</h2>
-
+    
+  
     <?php if (!empty($error)): ?>
         <div class="error"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
