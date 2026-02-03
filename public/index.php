@@ -107,47 +107,5 @@ $hasResults = count($posts) > 0;
     <?php endif; ?>
 </div>
 
-<!-- LIVE SEARCH AJAX -->
-<script>
-const searchInput = document.getElementById("liveSearch");
-const resultBox = document.getElementById("liveResults");
-
-searchInput.addEventListener("keyup", function () {
-    let q = this.value.trim();
-    if (q.length < 2) {
-        resultBox.innerHTML = "";
-        return;
-    }
-
-    fetch("search_ajax.php?q=" + encodeURIComponent(q))
-        .then(res => res.json())
-        .then(data => {
-            let html = "<ul>";
-            data.forEach(p => {
-                html += `<li><a href="post.php?id=${p.id}">${p.title}</a></li>`;
-            });
-            html += "</ul>";
-            resultBox.innerHTML = html;
-        });
-});
-</script>
-
-<!-- LOAD MORE -->
-<script>
-let offset = 6;
-document.getElementById("loadMore")?.addEventListener("click", function () {
-    fetch("load.php?offset=" + offset)
-        .then(r => r.text())
-        .then(data => {
-            if (data.trim() === "") {
-                this.innerText = "No more posts";
-                this.disabled = true;
-            } else {
-                document.getElementById("posts").insertAdjacentHTML("beforeend", data);
-                offset += 3;
-            }
-        });
-});
-</script>
 
 <?php require_once '../includes/footer.php'; ?>

@@ -50,6 +50,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="../public/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
     </nav>
 </header>
+<script src="../assets/js/fetch.js" defer></script>
 
 <div class="wrapper">
 
