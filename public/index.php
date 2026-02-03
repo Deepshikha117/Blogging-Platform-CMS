@@ -80,27 +80,27 @@ $hasResults = count($posts) > 0;
 
     <!-- POSTS -->
     <h2 class="section-title">Latest Posts</h2>
-
     <div id="posts" class="post-grid">
-        <?php foreach ($posts as $post): ?>
-        <article class="post-card">
-            <div class="post-header">
-                <h3 class="post-title"><?= htmlspecialchars($post['title']) ?></h3>
-                <span class="post-badge">Blog</span>
-            </div>
-
-            <div class="post-meta">
-                <span class="material-icons">person</span>
-                <?= htmlspecialchars($post['author']) ?>
-                <?= date('M d, Y', strtotime($post['created_at'])) ?>
-            </div>
-
-            <a class="read-more" href="post.php?id=<?= $post['id'] ?>">
-                Continue reading
-            </a>
-        </article>
-        <?php endforeach; ?>
+    <?php foreach ($posts as $post): ?>
+    <article class="post-card">
+    <div class="post-header">
+        <h3 class="post-title"><?= htmlspecialchars($post['title']) ?></h3>
+        <span class="post-badge">Blog</span>
     </div>
+
+    <div class="post-meta">
+        <span class="material-icons">person</span>
+        <?= htmlspecialchars($post['author'] ?? 'Admin') ?>
+        <span class="material-icons" style="margin-left:10px">calendar_today</span>
+        <?= date('M d, Y', strtotime($post['created_at'] ?? date('Y-m-d'))) ?>
+    </div>
+
+    <a class="read-more" href="post.php?id=<?= $post['id'] ?>">
+        Continue reading
+    </a>
+</article>
+    <?php endforeach; ?>
+</div>
 
     <?php if ($hasResults && count($posts) === 6): ?>
         <button id="loadMore" class="btn btn-success">Load More</button>

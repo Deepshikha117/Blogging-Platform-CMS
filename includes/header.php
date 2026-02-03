@@ -9,8 +9,8 @@ if (session_status() === PHP_SESSION_NONE) {
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -55,10 +55,15 @@ if (session_status() === PHP_SESSION_NONE) {
 <div class="wrapper">
 
 <script>
-const hamburger = document.querySelector('.hamburger');
-const nav = document.querySelector('header nav');
+document.addEventListener("DOMContentLoaded", function () {
+    const hamburger = document.querySelector(".hamburger");
+    const nav = document.getElementById("mainNav");
 
-hamburger.addEventListener('click', () => {
-    nav.classList.toggle('show');
+    if (hamburger && nav) {
+        hamburger.addEventListener("click", function () {
+            nav.classList.toggle("open");
+        });
+    }
 });
 </script>
+

@@ -1,8 +1,12 @@
 <?php
 $host = 'localhost';
-$dbname = 'blog_db';
-$username = 'root';
-$password = ''; 
+$dbname = 'np03cs4a240322';
+$username = 'np03cs4a240322';
+$password = 'xqtnvXuArp'; 
+//$host = 'localhost';
+//$dbname = 'blog_db';
+//$username = 'root';
+//$password = ''; 
 
 try {
     $pdo = new PDO(
