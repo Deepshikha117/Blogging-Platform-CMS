@@ -3,6 +3,9 @@ require_once "../includes/auth.php";
 require_once "../config/db.php";
 require_once '../includes/header.php';
 
+require_once '../includes/functions.php';
+
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name = trim($_POST["name"]);
 
@@ -22,7 +25,7 @@ $categories = $pdo->query("SELECT * FROM categories ORDER BY name")->fetchAll();
     <title>Manage Categories</title>
 </head>
 <body>
-
+<div class="container">
 <h2>Add Category</h2>
 
 <form method="post">
@@ -38,6 +41,6 @@ $categories = $pdo->query("SELECT * FROM categories ORDER BY name")->fetchAll();
     <li><?= htmlspecialchars($c['name']) ?></li>
 <?php endforeach; ?>
 </ul>
-
+</div>
 </body>
 </html>

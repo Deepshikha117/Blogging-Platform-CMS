@@ -52,7 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 <div class="container">
-<h2>Edit Post</h2>
+<h2 class="page-title"> Edit Post </h2>
+
 
 
 

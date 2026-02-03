@@ -21,13 +21,13 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Manage Posts</title>
+    <title>Manage Post</title>
    
 </head>
 <body>
 
 <div class="container">
-    <h2>Manage Posts</h2>
+    <h2>Manage Post</h2>
     
     <table>
         <tr>

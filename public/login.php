@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 <div class="header-left">
-        <img src="/Blogging-Platform-CMS/assets/images/LogoCMS1.png" alt="Blog CMS Logo" class="logo">
+        <img src="../assets/images/CMSLogo2.png" alt="Blog CMS Logo" class="logo">
     </div>
 <div class="login-box">
     <h2>Admin Login</h2>

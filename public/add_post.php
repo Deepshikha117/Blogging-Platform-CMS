@@ -9,7 +9,6 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-
 /* ---------------- CSRF TOKEN ---------------- */
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -70,11 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ]);
             }
         }
+
+        // ✅ FLASH MESSAGE + REDIRECT (ONLY ADDITION)
         $_SESSION['success_message'] = "Post published successfully!";
         header("Location: index.php");
         exit;
-
-}
+    }
 }
 ?>
 
@@ -87,11 +87,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <div class="container">
-
-    <!-- MAIN EDITOR -->
     <main class="editor-main" role="main">
         <h2>Add New Post</h2>
-        
 
         <?php if (!empty($error)): ?>
             <div class="alert error" role="alert">
@@ -100,45 +97,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <form method="POST">
-
             <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
 
             <label for="title">Post Title</label>
-            <input type="text" id="title" name="title"
-                   placeholder="Enter post title"
-                   aria-required="true"
-                   required>
+            <input type="text" id="title" name="title" placeholder="Enter post title" required>
 
             <label for="content">Content</label>
-            <textarea id="content" name="content"
-                      placeholder="Start writing your content..."
-                      aria-required="true"
-                      rows="14"
-                      required></textarea>
-
+            <textarea id="content" name="content" rows="14" required></textarea>
     </main>
 
-    <!-- SIDEBAR -->
     <aside class="editor-sidebar" role="complementary">
-
-        <!-- CATEGORY -->
         <section class="editor-box">
             <h3>Category</h3>
-
-            <select name="category_id" aria-required="true" required>
+            <select name="category_id" required>
                 <option value="">Select category</option>
                 <?php foreach ($categories as $cat): ?>
-                    <option value="<?= $cat['id']; ?>">
-                        <?= htmlspecialchars($cat['name']); ?>
-                    </option>
+                    <option value="<?= $cat['id']; ?>"><?= htmlspecialchars($cat['name']); ?></option>
                 <?php endforeach; ?>
             </select>
         </section>
 
-        <!-- TAGS -->
         <section class="editor-box">
             <h3>Tags</h3>
-
             <div class="tag-list">
                 <?php foreach ($tags as $tag): ?>
                     <label class="tag-item">
@@ -149,18 +129,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </section>
 
-        <!-- PUBLISH -->
         <section class="publish-box">
-            <button type="submit" class="btn btn-success">
-                Publish Post
-            </button>
+            <button type="submit" class="btn btn-success">Publish Post</button>
         </section>
-
     </aside>
-
     </form>
 </div>
-
 </body>
 </html>
+
 <?php require_once '../includes/footer.php'; ?>

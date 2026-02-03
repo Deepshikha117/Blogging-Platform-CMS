@@ -1,6 +1,8 @@
 <?php
 require_once "../config/db.php";
 require_once '../includes/header.php';
+require_once '../includes/functions.php';
+
 /* -------------------------
    1. Validate Post ID
 -------------------------- */
@@ -38,8 +40,14 @@ if (!$post) {
    3. Handle Comment Submission
 -------------------------- */
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    if (!verifyToken($_POST['csrf_token'] ?? '')) {
+        die("CSRF validation failed");
+    }
+
     $name = trim($_POST["name"]);
     $comment = trim($_POST["comment"]);
+
 
     if ($name && $comment) {
         $stmt = $pdo->prepare(
@@ -137,14 +145,15 @@ $tags = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
     <h3>Comments</h3>
 <span class="material-icons">comment</span>
+<form method="post">
+    <input type="hidden" name="csrf_token" value="<?= generateToken(); ?>">
+    <input type="text" name="name" placeholder="Your name" required><br><br>
+    <textarea name="comment" placeholder="Your comment" required></textarea><br><br>
+    <button type="submit">Post Comment</button>
+</form>
 
-    <form method="post">
-        <input type="text" name="name" placeholder="Your name" required><br><br>
-        <textarea name="comment" placeholder="Your comment" required></textarea><br><br>
-        <button type="submit">Post Comment</button>
-    </form>
 
-    <hr>
+    
 
     <?php if (empty($comments)): ?>
         <p>No comments yet.</p>

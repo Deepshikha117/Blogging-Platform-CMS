@@ -22,7 +22,7 @@ $tags = $pdo->query("SELECT * FROM tags ORDER BY name")->fetchAll();
     <title>Manage Tags</title>
 </head>
 <body>
-
+<div class="container">
 <h2>Add Tag</h2>
 
 <form method="post">
@@ -38,7 +38,7 @@ $tags = $pdo->query("SELECT * FROM tags ORDER BY name")->fetchAll();
     <li><?= htmlspecialchars($t['name']) ?></li>
 <?php endforeach; ?>
 </ul>
-
+</div>
 </body>
 </html>
 <?php require_once '../includes/footer.php'; ?>
